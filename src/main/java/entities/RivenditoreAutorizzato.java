@@ -13,8 +13,7 @@ public class RivenditoreAutorizzato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDistributore;
 
-    private String tipologia;
 
-    @OneToMany(mappedBy = "rivenditoreAutorizzato")
+    @OneToMany(mappedBy = "rivenditore_autorizzato")
     private List<Ticket> ticketDistribuiti;
 }
