@@ -16,4 +16,28 @@ public class RivenditoreAutorizzato {
 
     @OneToMany(mappedBy = "rivenditore_autorizzato")
     private List<Ticket> ticketDistribuiti;
+
+    public RivenditoreAutorizzato() {
+    }
+
+    public RivenditoreAutorizzato(Long idDistributore, List<Ticket> ticketDistribuiti) {
+        this.idDistributore = idDistributore;
+        this.ticketDistribuiti = ticketDistribuiti;
+    }
+
+    public Long getIdDistributore() {
+        return idDistributore;
+    }
+
+    public void setIdDistributore(Long idDistributore) {
+        this.idDistributore = idDistributore;
+    }
+
+    public List<Ticket> getTicketDistribuiti() {
+        return ticketDistribuiti;
+    }
+
+    public void setTicketDistribuiti(List<Ticket> ticketDistribuiti) {
+        this.ticketDistribuiti = ticketDistribuiti;
+    }
 }

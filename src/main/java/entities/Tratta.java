@@ -1,5 +1,8 @@
 package entities;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
 @Entity
 public class Tratta {
 
@@ -16,4 +19,36 @@ public class Tratta {
     @Column(name = "data_ora_fine")
     private LocalDateTime dataOraFineTratta;
 
+    public Tratta() {
+    }
+
+    public Tratta(Long idTratta, LocalDateTime dataOraInizioTratta, LocalDateTime dataOraFineTratta) {
+        this.idTratta = idTratta;
+        this.dataOraInizioTratta = dataOraInizioTratta;
+        this.dataOraFineTratta = dataOraFineTratta;
+    }
+
+    public Long getIdTratta() {
+        return idTratta;
+    }
+
+    public void setIdTratta(Long idTratta) {
+        this.idTratta = idTratta;
+    }
+
+    public LocalDateTime getDataOraInizioTratta() {
+        return dataOraInizioTratta;
+    }
+
+    public void setDataOraInizioTratta(LocalDateTime dataOraInizioTratta) {
+        this.dataOraInizioTratta = dataOraInizioTratta;
+    }
+
+    public LocalDateTime getDataOraFineTratta() {
+        return dataOraFineTratta;
+    }
+
+    public void setDataOraFineTratta(LocalDateTime dataOraFineTratta) {
+        this.dataOraFineTratta = dataOraFineTratta;
+    }
 }

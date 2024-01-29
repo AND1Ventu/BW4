@@ -1,5 +1,8 @@
 package entities;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
 @Entity
 public class Ticket {
 
@@ -40,4 +43,6 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "id_mezzo")
     private Mezzo mezzoAttivazione;
+
+
 }

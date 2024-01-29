@@ -1,4 +1,7 @@
 package entities;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Manutenzione {
@@ -14,6 +17,6 @@ public class Manutenzione {
     @Column(name = "data_fine")
     private LocalDateTime dataFine;
 
-    @ManyToOne(mappedBy = "manutenzioneFk")
+    @ManyToOne(mappedBy= "manutenzioneFk")
     private List<Mezzo> mezzi;
 }
