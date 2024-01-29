@@ -15,7 +15,6 @@ public class Ticket {
     @JoinColumn(name = "id_distributore")
     private RivenditoreAutorizzato rivenditoreAutorizzato;
 
-
     public enum Tipologia {
         SINGOLO, ABBONAMENTO
     }
@@ -28,7 +27,6 @@ public class Ticket {
 
     @Column(name = "data_attivazione")
     private LocalDateTime dataAttivazione;
-
 
 
     public enum Validita {
