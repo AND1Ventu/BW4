@@ -1,5 +1,7 @@
 package entities;
 
+import javax.persistence.*;
+
 @Entity
 public class Percorso {
 
