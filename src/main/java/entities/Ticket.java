@@ -1,5 +1,6 @@
 package entities;
-
+import javax.persistence.*;
+import java.time.LocalDateTime;
 @Entity
 public class Ticket {
 
@@ -40,4 +41,60 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "id_mezzo")
     private Mezzo mezzoAttivazione;
+
+    public Long getIdTicket() {
+        return idTicket;
+    }
+
+    public void setIdTicket(Long idTicket) {
+        this.idTicket = idTicket;
+    }
+
+    public RivenditoreAutorizzato getRivenditoreAutorizzato() {
+        return rivenditoreAutorizzato;
+    }
+
+    public void setRivenditoreAutorizzato(RivenditoreAutorizzato rivenditoreAutorizzato) {
+        this.rivenditoreAutorizzato = rivenditoreAutorizzato;
+    }
+
+    public Tipologia getTipologia() {
+        return tipologia;
+    }
+
+    public void setTipologia(Tipologia tipologia) {
+        this.tipologia = tipologia;
+    }
+
+    public LocalDateTime getDataVendita() {
+        return dataVendita;
+    }
+
+    public void setDataVendita(LocalDateTime dataVendita) {
+        this.dataVendita = dataVendita;
+    }
+
+    public LocalDateTime getDataAttivazione() {
+        return dataAttivazione;
+    }
+
+    public void setDataAttivazione(LocalDateTime dataAttivazione) {
+        this.dataAttivazione = dataAttivazione;
+    }
+
+    public Validita getValidita() {
+        return validita;
+    }
+
+    public void setValidita(Validita validita) {
+        this.validita = validita;
+    }
+
+    public Mezzo getMezzoAttivazione() {
+        return mezzoAttivazione;
+    }
+
+    public void setMezzoAttivazione(Mezzo mezzoAttivazione) {
+        this.mezzoAttivazione = mezzoAttivazione;
+    }
 }
