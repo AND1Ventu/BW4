@@ -42,17 +42,8 @@ public class TicketDAO {
 
         if (result.Tipologia.ABBONAMENTO.equals(tipologia)){
 
-            LocalDateTime data_attivazione = result.DataAttivazione;
-            Validita validita = result.Validita;
+            LocalDateTime data_attivazione = result.DataAttivazione
 
-
-            if(!data_attivazione) {
-                System.out.println("Il biglietto è da attivare");
-            } else if((data_attivazione) && (validita == "WEEK") && data_attivazione.plusDays(7).isBefore(LocalDateTime.now())){
-                    System.out.println("Il biglietto settimanale è ancora valido e scade il " + data_attivazione.plusDays(7));
-            } else if((data_attivazione) && (validita == "MONTH")){
-
-                }
         }
 
         em.close();
