@@ -4,6 +4,7 @@ package entities;
 public class Utente {
 
     @Id
+    @Column(name = "id_utente")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUtente;
 
@@ -11,7 +12,8 @@ public class Utente {
 
     private String cognome;
 
-    private String nTessera;
+    @Column(name = "n_tessera", unique = true)
+    private Long nTessera;
 
     @OneToMany(mappedBy = "utente")
     private List<Ticket> tickets;

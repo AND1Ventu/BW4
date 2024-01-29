@@ -6,11 +6,11 @@ import javax.persistence.*;
 public class RivenditoreAutorizzato {
 
     @Id
+    @Column(name = "id_distributore")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDistributore;
 
-    private String tipologia;
 
-    @OneToMany(mappedBy = "rivenditoreAutorizzato")
+    @OneToMany(mappedBy = "rivenditore_autorizzato")
     private List<Ticket> ticketDistribuiti;
 }

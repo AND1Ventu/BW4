@@ -4,16 +4,16 @@ package entities;
 public class Tratta {
 
     @Id
+    @ManyToOne
+    @JoinColumn(name = "id_tratta")
+    @Column(name = "id_tratta")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTratta;
 
-    private int tempoEffettivo;
-
+    @Column(name = "data_ora_inizio")
     private LocalDateTime dataOraInizioTratta;
 
+    @Column(name = "data_ora_fine")
     private LocalDateTime dataOraFineTratta;
 
-    @ManyToOne
-    @JoinColumn(name = "idPercorsoFk")
-    private Percorso percorsoFk;
 }

@@ -4,13 +4,16 @@ package entities;
 public class Manutenzione {
 
     @Id
+    @Column(name = "id_manutenzione")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idManutenzione;
 
+    @Column(name = "data_inizio")
     private LocalDateTime dataInizio;
 
+    @Column(name = "data_fine")
     private LocalDateTime dataFine;
 
-    @OneToMany(mappedBy = "manutenzioneFk")
+    @ManyToOne(mappedBy = "manutenzioneFk")
     private List<Mezzo> mezzi;
 }
