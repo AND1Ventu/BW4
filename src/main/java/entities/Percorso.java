@@ -18,7 +18,7 @@ public class Percorso {
     @OneToMany(mappedBy = "idTratta")
     private List<Tratta> tratte;
 
-    @OneToMany(mappedBy = "idPercorso")
+    @OneToMany(mappedBy = "percorso")
     private List<Mezzo> mezzi;
 
     public Percorso() {

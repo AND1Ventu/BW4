@@ -27,12 +27,15 @@ public class Mezzo {
     @Column(name = "in_servizio")
     private boolean inServizio;
 
-    @OneToMany(mappedBy = "idMezzo")
-    private List<Manutenzione> manutenzioneFk;
+    @OneToMany(mappedBy = "mezzo")
+    private List<Manutenzione> manutenzioni;
 
     @ManyToOne
     @JoinColumn(name = "id_percorso")
-    private Percorso percorsoFk;
+    private Percorso percorso;
+
+    @ManyToMany(mappedBy = "mezzi")
+    private List<Ticket> tickets;
 
     public Mezzo() {
     }

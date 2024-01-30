@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 @Entity
 @Table(name = "rivenditore_autorizzato")
-public class RivenditoreAutorizzato {
+@DiscriminatorColumn(name = "tipo_rivenditore")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class RivenditoreAutorizzato {
 
     @Id
     @Column(name = "id_distributore")

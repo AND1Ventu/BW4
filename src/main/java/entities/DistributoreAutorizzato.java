@@ -4,8 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.List;
 
-@Entity
-@Table(name = "distributore_autorizzato")
+
 public class DistributoreAutorizzato extends RivenditoreAutorizzato {
 
     private boolean attivo;

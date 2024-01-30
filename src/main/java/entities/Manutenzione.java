@@ -9,9 +9,15 @@ public class Manutenzione {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
-    @JoinColumn(name = "id_manutenzione")
+//    @ManyToOne
+//    @JoinColumn(name = "id_manutenzione")
     private Long idManutenzione;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_mezzo")
+    private Mezzo mezzo;
+
 
     @Column(name = "data_inizio")
     private LocalDateTime dataInizio;

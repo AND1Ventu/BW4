@@ -19,7 +19,7 @@ public class Utente {
     @Column(name = "n_tessera", unique = true)
     private Long nTessera;
 
-    @OneToMany(mappedBy = "idUtente")
+    @OneToMany(mappedBy = "utente")
     private List<Ticket> tickets;
 
     public Utente() {

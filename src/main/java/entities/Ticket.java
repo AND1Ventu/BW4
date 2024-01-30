@@ -1,19 +1,26 @@
 package entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "ticket")
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
-    @JoinColumn(name = "n_tessera")
+//    @ManyToOne
+//    @JoinColumn(name = "id_ticket")
     private Long idTicket;
 
     @ManyToOne
     @JoinColumn(name = "id_distributore")
     private RivenditoreAutorizzato rivenditoreAutorizzato;
+
+
+    @ManyToOne
+    @JoinColumn(name = "n_tessera")
+    private List<Long> idsTicket;
 
 
     public enum Tipologia {
@@ -38,14 +45,18 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private Validita validita;
 
-    @ManyToOne
-    @JoinColumn(name = "id_mezzo")
-    private Mezzo mezzoAttivazione;
+    @ManyToMany
+    @JoinTable(
+            name = "ticket_mezzo",
+            joinColumns = @JoinColumn(name = "id_ticket"),
+            inverseJoinColumns = @JoinColumn(name = "id_mezzo")
+    )
+    private List<Mezzo> mezzi;
 
     public Ticket() {
     }
 
-    public Ticket(RivenditoreAutorizzato rivenditoreAutorizzato, Tipologia tipologia, LocalDateTime dataVendita, LocalDateTime dataAttivazione, Validita validita, Mezzo mezzoAttivazione) {
+    public Ticket(RivenditoreAutorizzato rivenditoreAutorizzato, Tipologia tipologia, LocalDateTime dataVendita, LocalDateTime dataAttivazione, Validita validita, List<Mezzo> mezzoAttivazione) {
         this.rivenditoreAutorizzato = rivenditoreAutorizzato;
         this.tipologia = tipologia;
         this.dataVendita = dataVendita;
@@ -103,10 +114,10 @@ public class Ticket {
     }
 
     public Mezzo getMezzoAttivazione() {
-        return mezzoAttivazione;
+        return (Mezzo) mezzoAttivazione;
     }
 
     public void setMezzoAttivazione(Mezzo mezzoAttivazione) {
-        this.mezzoAttivazione = mezzoAttivazione;
+        this.mezzoAttivazione = (List<Mezzo>) mezzoAttivazione;
     }
 }
