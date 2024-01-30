@@ -1,6 +1,10 @@
 package entities;
 
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
+@Table(name = "mezzo")
 public class Mezzo {
 
     @Id
@@ -23,11 +27,25 @@ public class Mezzo {
     @Column(name = "in_servizio")
     private boolean inServizio;
 
-    @OneToMany
-    @JoinColumn(name = "id_manutenzione")
-    private List<Manutenzione> manutenzioneFk;
+    @OneToMany(mappedBy = "mezzo")
+    private List<Manutenzione> manutenzioni;
 
     @ManyToOne
     @JoinColumn(name = "id_percorso")
-    private Percorso percorsoFk;
+    private Percorso percorso;
+
+    @ManyToMany(mappedBy = "mezzi")
+    private List<Ticket> tickets;
+
+    public Mezzo() {
+    }
+
+    public Mezzo(Tipologia tipologia, boolean manutenzione, int capienza, boolean inServizio, List<Manutenzione> manutenzioneFk, Percorso percorsoFk) {
+        this.tipologia = tipologia;
+        this.manutenzione = manutenzione;
+        this.capienza = capienza;
+        this.inServizio = inServizio;
+        this.manutenzioneFk = manutenzioneFk;
+        this.percorsoFk = percorsoFk;
+    }
 }

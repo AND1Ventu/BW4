@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f10db5d3-a72f-4fbb-8122-2749160d62c6" name="Changes" comment="ticketDAO completed">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DistributoreDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/MezzoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/RivenditoreDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f10db5d3-a72f-4fbb-8122-2749160d62c6" name="Changes" comment="Cannot invoke &quot;org.hibernate.mapping.PersistentClass.getTable()&quot; because &quot;classMapping&quot; is null">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/DistributoreAutorizzato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/DistributoreAutorizzato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Manutenzione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Manutenzione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Mezzo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Mezzo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Percorso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Percorso.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/RivenditoreAutorizzato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/RivenditoreAutorizzato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,11 +26,17 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="AndreaV" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/dao/TicketDAO.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -44,9 +51,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "AndreaV",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -90,11 +98,20 @@
       <option name="project" value="LOCAL" />
       <updated>1706548278214</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Cannot invoke &quot;org.hibernate.mapping.PersistentClass.getTable()&quot; because &quot;classMapping&quot; is null">
+      <option name="closed" value="true" />
+      <created>1706615497448</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706615497448</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ticketDAO completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="ticketDAO completed" />
+    <MESSAGE value="Cannot invoke &quot;org.hibernate.mapping.PersistentClass.getTable()&quot; because &quot;classMapping&quot; is null" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cannot invoke &quot;org.hibernate.mapping.PersistentClass.getTable()&quot; because &quot;classMapping&quot; is null" />
   </component>
 </project>

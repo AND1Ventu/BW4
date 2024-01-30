@@ -1,6 +1,10 @@
 package entities;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 @Entity
+@Table(name = "utente")
 public class Utente {
 
     @Id
@@ -17,4 +21,14 @@ public class Utente {
 
     @OneToMany(mappedBy = "utente")
     private List<Ticket> tickets;
+
+    public Utente() {
+    }
+
+    public Utente(String nome, String cognome, Long nTessera, List<Ticket> tickets) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.nTessera = nTessera;
+        this.tickets = tickets;
+    }
 }

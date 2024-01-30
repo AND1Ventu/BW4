@@ -1,10 +1,13 @@
 package entities;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 @Entity
+@Table(name = "percorso")
 public class Percorso {
 
     @Id
-    @Column(name = "id_percorso")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPercorso;
 
@@ -12,6 +15,17 @@ public class Percorso {
     private String nomePercorso;
 
     @Column(name = "id_tratta")
-    @OneToMany(mappedBy = "percorsoFk")
+    @OneToMany(mappedBy = "idTratta")
     private List<Tratta> tratte;
+
+    @OneToMany(mappedBy = "percorso")
+    private List<Mezzo> mezzi;
+
+    public Percorso() {
+    }
+
+    public Percorso(String nomePercorso, List<Tratta> tratte) {
+        this.nomePercorso = nomePercorso;
+        this.tratte = tratte;
+    }
 }

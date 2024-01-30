@@ -1,12 +1,15 @@
 package entities;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 @Entity
+@Table(name = "tratta")
 public class Tratta {
 
     @Id
     @ManyToOne
     @JoinColumn(name = "id_tratta")
-    @Column(name = "id_tratta")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTratta;
 
@@ -16,4 +19,11 @@ public class Tratta {
     @Column(name = "data_ora_fine")
     private LocalDateTime dataOraFineTratta;
 
+    public Tratta() {
+    }
+
+    public Tratta(LocalDateTime dataOraInizioTratta, LocalDateTime dataOraFineTratta) {
+        this.dataOraInizioTratta = dataOraInizioTratta;
+        this.dataOraFineTratta = dataOraFineTratta;
+    }
 }
