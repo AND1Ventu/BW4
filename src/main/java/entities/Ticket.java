@@ -18,9 +18,8 @@ public class Ticket {
     private RivenditoreAutorizzato rivenditoreAutorizzato;
 
 
-    @ManyToOne
-    @JoinColumn(name = "n_tessera")
-    private List<Long> idsTicket;
+    @ManyToOne(mappedBy = "ticket")
+    private List<Utente> utenti;
 
 
     public enum Tipologia {

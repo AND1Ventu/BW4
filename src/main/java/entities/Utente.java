@@ -19,8 +19,9 @@ public class Utente {
     @Column(name = "n_tessera", unique = true)
     private Long nTessera;
 
-    @OneToMany(mappedBy = "utente")
-    private List<Ticket> tickets;
+    @OneToMany
+    @JoinColumn(name = "id_ticket")
+    private Ticket ticket;
 
     public Utente() {
     }
