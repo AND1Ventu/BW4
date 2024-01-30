@@ -2,13 +2,13 @@ package entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 @Entity
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
-    @Column(name = "id_ticket")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ManyToOne
-    @JoinColumn(name = "id_utente")
+    @JoinColumn(name = "n_tessera")
     private Long idTicket;
 
     @ManyToOne
@@ -41,6 +41,18 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "id_mezzo")
     private Mezzo mezzoAttivazione;
+
+    public Ticket() {
+    }
+
+    public Ticket(RivenditoreAutorizzato rivenditoreAutorizzato, Tipologia tipologia, LocalDateTime dataVendita, LocalDateTime dataAttivazione, Validita validita, Mezzo mezzoAttivazione) {
+        this.rivenditoreAutorizzato = rivenditoreAutorizzato;
+        this.tipologia = tipologia;
+        this.dataVendita = dataVendita;
+        this.dataAttivazione = dataAttivazione;
+        this.validita = validita;
+        this.mezzoAttivazione = mezzoAttivazione;
+    }
 
     public Long getIdTicket() {
         return idTicket;

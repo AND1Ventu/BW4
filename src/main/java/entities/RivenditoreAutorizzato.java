@@ -1,8 +1,10 @@
 package entities;
 
 import javax.persistence.*;
-
+import java.time.LocalDateTime;
+import java.util.List;
 @Entity
+@Table(name = "rivenditore_autorizzato")
 public class RivenditoreAutorizzato {
 
     @Id
@@ -11,8 +13,15 @@ public class RivenditoreAutorizzato {
     private Long idDistributore;
 
 
-    @OneToMany(mappedBy = "rivenditore_autorizzato")
+    @OneToMany(mappedBy = "rivenditoreAutorizzato")
     private List<Ticket> ticketDistribuiti;
+
+    public RivenditoreAutorizzato() {
+    }
+
+    public RivenditoreAutorizzato(List<Ticket> ticketDistribuiti) {
+        this.ticketDistribuiti = ticketDistribuiti;
+    }
 
     public Long getIdDistributore() {
         return idDistributore;

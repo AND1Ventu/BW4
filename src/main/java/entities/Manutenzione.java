@@ -1,11 +1,16 @@
 package entities;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 @Entity
+@Table(name = "manutenzione")
 public class Manutenzione {
 
     @Id
-    @Column(name = "id_manutenzione")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ManyToOne
+    @JoinColumn(name = "id_manutenzione")
     private Long idManutenzione;
 
     @Column(name = "data_inizio")
@@ -14,6 +19,13 @@ public class Manutenzione {
     @Column(name = "data_fine")
     private LocalDateTime dataFine;
 
-    @ManyToOne(mappedBy = "manutenzioneFk")
-    private List<Mezzo> mezzi;
+
+
+    public Manutenzione() {
+    }
+
+    public Manutenzione(LocalDateTime dataInizio, LocalDateTime dataFine) {
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
+    }
 }
