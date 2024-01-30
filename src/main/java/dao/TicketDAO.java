@@ -35,39 +35,48 @@ public class TicketDAO {
         em.close();
     }
 
-    public Ticket ricercaTicketPerId(Long id) {
+    public void ricercaTicketPerId(Long id) {
         EntityManager em = emf.createEntityManager();
-        Ticket result = em.createQuery("SELECT t FROM Ticket t WHERE t.id_ticket = :id_ticket", Ticket.class)
-                .setParameter("id_ticket", id);
 
-        if (result.Tipologia.ABBONAMENTO.equals(tipologia)){
+        try {
+            Ticket result = em.find(Ticket.class, id);
 
-            LocalDateTime data_attivazione = result.DataAttivazione
+            if (result != null && Ticket.Tipologia.ABBONAMENTO.equals(result.getTipologia())) {
+                LocalDateTime dataAttivazione = result.getDataAttivazione();
+                Ticket.Validita validita = result.getValidita();
 
+                if (dataAttivazione == null) {
+                    System.out.println("Il biglietto è ancora da attivare");
+                } else if ((validita == Ticket.Validita.WEEK) && result.getDataAttivazione().plusDays(7).isBefore(LocalDateTime.now())) {
+                    System.out.println("Il biglietto settimanale è ancora valido e scade il " + dataAttivazione.plusDays(7));
+                } else if ((validita == Ticket.Validita.MONTH) && result.getDataAttivazione().plusDays(30).isBefore(LocalDateTime.now())) {
+                    System.out.println("Il biglietto mensile è ancora valido e scade il " + dataAttivazione.plusDays(30));
+                } else {
+                    System.out.println("Il biglietto è scaduto");
+                }
+            }
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
-
-        em.close();
-
-        return prestito;
     }
 
-    public List<Prestito> ricercaPrestitiUtente(Utente utente) {
+    public Long attivatiPerDate(LocalDateTime data_inizio, LocalDateTime data_fine) {
         EntityManager em = emf.createEntityManager();
-        List<Prestito> result = em.createQuery("SELECT p FROM Prestito p WHERE p.utente = :utente", Prestito.class)
-                .setParameter("utente", utente)
-                .getResultList();
-        em.close();
-        return result;
+
+        try{
+            String jpql = "SELECT COUNT(t) FROM Ticket t WHERE t.dataAttivazione BETWEEN :dataInizio AND :dataFine";
+
+            return em.createQuery(jpql, Long.class)
+                    .setParameter("dataInizio", data_inizio)
+                    .setParameter("dataFine", data_fine)
+                    .getSingleResult();
+        } finally {
+            em.close();
+        }
     }
 
-    public List<Prestito> ricercaPrestitiScadutiNonRestituiti() {
-        EntityManager em = emf.createEntityManager();
-        List<Prestito> result = em.createQuery("SELECT p FROM Prestito p WHERE p.dataRestituzionePrevista < :oggi AND p.dataRestituzioneEffettiva IS NULL", Prestito.class)
-                .setParameter("oggi", LocalDate.now())
-                .getResultList();
-        em.close();
-        return result;
-    }
 
 }
 
