@@ -40,12 +40,78 @@ public class Mezzo {
     public Mezzo() {
     }
 
-    public Mezzo(Tipologia tipologia, boolean manutenzione, int capienza, boolean inServizio, List<Manutenzione> manutenzioneFk, Percorso percorsoFk) {
+    public Mezzo(Long idMezzo, Tipologia tipologia, boolean manutenzione, int capienza, boolean inServizio, List<Manutenzione> manutenzioni, Percorso percorso, List<Ticket> tickets) {
+        this.idMezzo = idMezzo;
         this.tipologia = tipologia;
         this.manutenzione = manutenzione;
         this.capienza = capienza;
         this.inServizio = inServizio;
-        this.manutenzioneFk = manutenzioneFk;
-        this.percorsoFk = percorsoFk;
+        this.manutenzioni = manutenzioni;
+        this.percorso = percorso;
+        this.tickets = tickets;
+    }
+
+    public Long getIdMezzo() {
+        return idMezzo;
+    }
+
+    public void setIdMezzo(Long idMezzo) {
+        this.idMezzo = idMezzo;
+    }
+
+    public Tipologia getTipologia() {
+        return tipologia;
+    }
+
+    public void setTipologia(Tipologia tipologia) {
+        this.tipologia = tipologia;
+    }
+
+    public boolean isManutenzione() {
+        return manutenzione;
+    }
+
+    public void setManutenzione(boolean manutenzione) {
+        this.manutenzione = manutenzione;
+    }
+
+    public int getCapienza() {
+        return capienza;
+    }
+
+    public void setCapienza(int capienza) {
+        this.capienza = capienza;
+    }
+
+    public boolean isInServizio() {
+        return inServizio;
+    }
+
+    public void setInServizio(boolean inServizio) {
+        this.inServizio = inServizio;
+    }
+
+    public List<Manutenzione> getManutenzioni() {
+        return manutenzioni;
+    }
+
+    public void setManutenzioni(List<Manutenzione> manutenzioni) {
+        this.manutenzioni = manutenzioni;
+    }
+
+    public Percorso getPercorso() {
+        return percorso;
+    }
+
+    public void setPercorso(Percorso percorso) {
+        this.percorso = percorso;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

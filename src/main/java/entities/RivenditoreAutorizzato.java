@@ -5,18 +5,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 @Entity
 @Table(name = "rivenditore_autorizzato")
-@DiscriminatorColumn(name = "tipo_rivenditore")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class RivenditoreAutorizzato {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class RivenditoreAutorizzato {
 
     @Id
     @Column(name = "id_distributore")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idDistributore;
 
 
-    @OneToMany(mappedBy = "rivenditoreAutorizzato")
+    @OneToMany(mappedBy = "rivenditoreAutorizzato", cascade = CascadeType.PERSIST)
     private List<Ticket> ticketDistribuiti;
+
 
     public RivenditoreAutorizzato() {
     }
