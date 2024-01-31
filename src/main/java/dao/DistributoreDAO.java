@@ -1,6 +1,7 @@
 package dao;
 
 import entities.DistributoreAutorizzato;
+import entities.Mezzo;
 import entities.Ticket;
 
 import javax.persistence.EntityManager;
@@ -20,6 +21,69 @@ public class DistributoreDAO {
 
     public void closeEntityManagerFactory() {
         emf.close();
+    }
+
+    private EntityManagerFactory emf;
+
+    public MezzoDAO() {
+        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
+    }
+
+    public void closeEntityManager(EntityManager em) {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+    }
+
+    public void beginTransaction(EntityTransaction transaction) {
+        if (!transaction.isActive()) {
+            transaction.begin();
+        }
+    }
+
+    public void commitTransaction(EntityManager em) {
+        em.getTransaction().commit();
+        closeEntityManager(em);
+    }
+
+    public void rollbackTransaction(EntityManager em) {
+        if (em.getTransaction().isActive()) {
+            em.getTransaction().rollback();
+        }
+        closeEntityManager(em);
+    }
+
+    public void aggiungiDistributore(DistributoreAutorizzato distributore) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            beginTransaction(transaction);
+            em.persist(distributore);
+            commitTransaction(transaction, em);
+        } catch (Exception e) {
+            rollbackTransaction(transaction, em);
+            throw e;
+        } finally {
+            closeEntityManager(em);
+        }
+    }
+
+    public void rimuoviDistributore(Long id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            beginTransaction(em);
+            DistributoreAutorizzato distributore = em.find(DistributoreAutorizzato.class, id);
+            if (mezzo != null) {
+                em.remove(distributore);
+            }
+            commitTransaction(em);
+        } catch (Exception e) {
+            rollbackTransaction(em);
+            throw e;
+        } finally {
+            closeEntityManager(em);
+        }
     }
 
     public void saveDistributore(DistributoreAutorizzato distributore) {
