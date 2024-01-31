@@ -18,7 +18,7 @@ public class Ticket {
     private RivenditoreAutorizzato rivenditoreAutorizzato;
 
 
-    @ManyToOne(mappedBy = "ticket")
+    @OneToMany(mappedBy = "ticket")
     private List<Utente> utenti;
 
 
@@ -55,13 +55,14 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(RivenditoreAutorizzato rivenditoreAutorizzato, Tipologia tipologia, LocalDateTime dataVendita, LocalDateTime dataAttivazione, Validita validita, List<Mezzo> mezzoAttivazione) {
+    public Ticket(RivenditoreAutorizzato rivenditoreAutorizzato, List<Utente> utenti, Tipologia tipologia, LocalDateTime dataVendita, LocalDateTime dataAttivazione, Validita validita, List<Mezzo> mezzi) {
         this.rivenditoreAutorizzato = rivenditoreAutorizzato;
+        this.utenti = utenti;
         this.tipologia = tipologia;
         this.dataVendita = dataVendita;
         this.dataAttivazione = dataAttivazione;
         this.validita = validita;
-        this.mezzoAttivazione = mezzoAttivazione;
+        this.mezzi = mezzi;
     }
 
     public Long getIdTicket() {
@@ -113,10 +114,10 @@ public class Ticket {
     }
 
     public Mezzo getMezzoAttivazione() {
-        return (Mezzo) mezzoAttivazione;
+        return (Mezzo) mezzi;
     }
 
-    public void setMezzoAttivazione(Mezzo mezzoAttivazione) {
-        this.mezzoAttivazione = (List<Mezzo>) mezzoAttivazione;
+    public void setMezzoAttivazione(Mezzo mezzi) {
+        this.mezzi = (List<Mezzo>) mezzi;
     }
 }

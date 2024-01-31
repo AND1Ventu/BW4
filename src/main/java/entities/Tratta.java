@@ -29,4 +29,36 @@ public class Tratta {
         this.dataOraInizioTratta = dataOraInizioTratta;
         this.dataOraFineTratta = dataOraFineTratta;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataOraInizioTratta() {
+        return dataOraInizioTratta;
+    }
+
+    public void setDataOraInizioTratta(LocalDateTime dataOraInizioTratta) {
+        this.dataOraInizioTratta = dataOraInizioTratta;
+    }
+
+    public LocalDateTime getDataOraFineTratta() {
+        return dataOraFineTratta;
+    }
+
+    public void setDataOraFineTratta(LocalDateTime dataOraFineTratta) {
+        this.dataOraFineTratta = dataOraFineTratta;
+    }
+
+    public Percorso getPercorso() {
+        return percorso;
+    }
+
+    public void setPercorso(Percorso percorso) {
+        this.percorso = percorso;
+    }
 }

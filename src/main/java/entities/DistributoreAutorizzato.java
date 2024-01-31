@@ -1,12 +1,13 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
-
+@Entity
+@Table(name = "distributori_autorizzati")
 public class DistributoreAutorizzato extends RivenditoreAutorizzato {
 
+    @Column(name = "attivo")
     private boolean attivo;
 
     public DistributoreAutorizzato() {
