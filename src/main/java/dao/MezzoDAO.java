@@ -1,5 +1,6 @@
 package dao;
 
+import entities.DistributoreAutorizzato;
 import entities.Mezzo;
 import entities.Manutenzione;
 import entities.Ticket;
@@ -49,13 +50,14 @@ public class MezzoDAO {
 
         try {
             beginTransaction(transaction);
-            em.persist(mezzo);
+            em.merge(mezzo);
+//            em.refresh(distributore);
             commitTransaction(em);
         } catch (Exception e) {
             rollbackTransaction(em);
-            throw e;
+            e.printStackTrace();
         } finally {
-            closeEntityManager(em);
+            em.close();
         }
     }
 
@@ -93,7 +95,7 @@ public class MezzoDAO {
         try {
             Mezzo mezzo = em.find(Mezzo.class, id);
             if (mezzo.isManutenzione()){
-                String jpql = "SELECT m FROM Manutenzione WHERE m.mezzo.id = :id";
+                String jpql = "SELECT m FROM Manutenzione m WHERE m.mezzo.id = :id";
                 return em.createQuery(jpql, Manutenzione.class)
                         .setParameter("id", id)
                         .getResultList();
@@ -117,6 +119,13 @@ public class MezzoDAO {
         } finally {
             closeEntityManager(em);
         }
+    }
+
+    public Mezzo getMezzoById(Long id) {
+        EntityManager em = emf.createEntityManager();
+        Mezzo mezzo = em.find(Mezzo.class, id);
+        em.close();
+        return mezzo;
     }
 }
 

@@ -41,6 +41,22 @@ public class DistributoreDAO {
         closeEntityManager(em);
     }
 
+//    public void aggiungiDistributore(DistributoreAutorizzato distributore) {
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction transaction = em.getTransaction();
+//
+//        try {
+//            beginTransaction(transaction);
+//            em.persist(distributore);
+//            commitTransaction(transaction, em);
+//        } catch (Exception e) {
+//            rollbackTransaction(transaction, em);
+//            throw e;
+//        } finally {
+//            closeEntityManager(em);
+//        }
+//    }
+
     public void aggiungiDistributore(DistributoreAutorizzato distributore) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
@@ -49,10 +65,18 @@ public class DistributoreDAO {
             beginTransaction(transaction);
             em.persist(distributore);
             commitTransaction(transaction, em);
+
         } catch (Exception e) {
             rollbackTransaction(transaction, em);
             throw e;
         } finally {
+            try {
+                em.refresh(distributore);
+            }
+            finally {
+
+            }
+
             closeEntityManager(em);
         }
     }
@@ -82,7 +106,8 @@ public class DistributoreDAO {
 
         try {
             beginTransaction(transaction);
-            em.merge(distributore);
+            em.persist(distributore);
+//            em.refresh(distributore);
             commitTransaction(transaction, em);
         } catch (Exception e) {
             rollbackTransaction(transaction, em);

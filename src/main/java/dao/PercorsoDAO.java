@@ -1,5 +1,6 @@
 package dao;
 
+import entities.DistributoreAutorizzato;
 import entities.Manutenzione;
 import entities.Percorso;
 import entities.Tratta;
@@ -102,6 +103,13 @@ public class PercorsoDAO {
         } finally {
             em.close();
         }
+    }
+
+    public Percorso getPercorsoById(Long id) {
+        EntityManager em = emf.createEntityManager();
+        Percorso percorso = em.find(Percorso.class, id);
+        em.close();
+        return percorso;
     }
 
 

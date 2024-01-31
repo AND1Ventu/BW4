@@ -16,9 +16,6 @@ public class Utente {
 
     private String cognome;
 
-    @Column(name = "n_tessera", unique = true)
-    private Long nTessera;
-
     @ManyToOne
     @JoinColumn(name = "id_ticket")
     private Ticket ticket;
@@ -26,11 +23,10 @@ public class Utente {
     public Utente() {
     }
 
-    public Utente(Long idUtente, String nome, String cognome, Long nTessera, Ticket ticket) {
+    public Utente(Long idUtente, String nome, String cognome, Ticket ticket) {
         this.idUtente = idUtente;
         this.nome = nome;
         this.cognome = cognome;
-        this.nTessera = nTessera;
         this.ticket = ticket;
     }
 
@@ -56,14 +52,6 @@ public class Utente {
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
-    }
-
-    public Long getnTessera() {
-        return nTessera;
-    }
-
-    public void setnTessera(Long nTessera) {
-        this.nTessera = nTessera;
     }
 
     public Ticket getTicket() {
