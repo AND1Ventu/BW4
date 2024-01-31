@@ -23,9 +23,9 @@ public class UtenteDAO {
         try {
             beginTransaction(transaction);
             em.persist(utente);
-            commitTransaction(transaction, em);
+            commitTransaction(em);
         } catch (Exception e) {
-            rollbackTransaction(transaction, em);
+            rollbackTransaction(em);
             throw e;
         } finally {
             closeEntityManager(em);
@@ -34,8 +34,10 @@ public class UtenteDAO {
 
     public void rimuoviUtente(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
         try {
-            beginTransaction(em);
+            beginTransaction(transaction);
             Utente utente = em.find(Utente.class, id);
             if (utente != null) {
                 em.remove(utente);

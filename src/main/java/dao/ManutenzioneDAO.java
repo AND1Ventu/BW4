@@ -26,9 +26,9 @@ public class ManutenzioneDAO {
         try {
             beginTransaction(transaction);
             em.persist(manutenzione);
-            commitTransaction(transaction, em);
+            commitTransaction(em);
         } catch (Exception e) {
-            rollbackTransaction(transaction, em);
+            rollbackTransaction(em);
             throw e;
         } finally {
             closeEntityManager(em);
@@ -37,8 +37,10 @@ public class ManutenzioneDAO {
 
     public void rimuoviManutenzione(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
         try {
-            beginTransaction(em);
+            beginTransaction(transaction);
             Manutenzione manutenzione = em.find(Manutenzione.class, id);
             if (manutenzione != null) {
                 em.remove(manutenzione);

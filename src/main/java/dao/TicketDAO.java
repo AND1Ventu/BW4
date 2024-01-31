@@ -30,7 +30,7 @@ public class TicketDAO {
 
     public void commitTransaction(EntityManager em) {
         em.getTransaction().commit();
-        closeEntityManager(em);
+//        closeEntityManager(em);
     }
 
     public void rollbackTransaction(EntityManager em) {
@@ -47,9 +47,9 @@ public class TicketDAO {
         try {
             beginTransaction(transaction);
             em.persist(ticket);
-            commitTransaction(transaction, em);
+            commitTransaction(em);
         } catch (Exception e) {
-            rollbackTransaction(transaction, em);
+            rollbackTransaction(em);
             throw e;
         } finally {
             closeEntityManager(em);
@@ -58,8 +58,10 @@ public class TicketDAO {
 
     public void rimuoviTicket(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
         try {
-            beginTransaction(em);
+            beginTransaction(transaction);
             Ticket ticket = em.find(Ticket.class, id);
             if (ticket != null) {
                 em.remove(ticket);
@@ -99,8 +101,11 @@ public class TicketDAO {
 
     public Long attivatiPerDate(LocalDateTime data_inizio, LocalDateTime data_fine) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+
         try {
-            beginTransaction(em);
+            beginTransaction(transaction);
             String jpql = "SELECT COUNT(t) FROM Ticket t WHERE t.dataAttivazione BETWEEN :dataInizio AND :dataFine";
 
             return em.createQuery(jpql, Long.class)

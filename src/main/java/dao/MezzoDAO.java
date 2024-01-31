@@ -50,9 +50,9 @@ public class MezzoDAO {
         try {
             beginTransaction(transaction);
             em.persist(mezzo);
-            commitTransaction(transaction, em);
+            commitTransaction(em);
         } catch (Exception e) {
-            rollbackTransaction(transaction, em);
+            rollbackTransaction(em);
             throw e;
         } finally {
             closeEntityManager(em);
@@ -61,8 +61,10 @@ public class MezzoDAO {
 
     public void rimuoviMezzo(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
         try {
-            beginTransaction(em);
+            beginTransaction(transaction);
             Mezzo mezzo = em.find(Mezzo.class, id);
             if (mezzo != null) {
                 em.remove(mezzo);

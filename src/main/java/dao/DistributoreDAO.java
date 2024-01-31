@@ -23,21 +23,9 @@ public class DistributoreDAO {
         emf.close();
     }
 
-    private EntityManagerFactory emf;
-
-    public MezzoDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
-    }
-
     public void closeEntityManager(EntityManager em) {
         if (em != null && em.isOpen()) {
             em.close();
-        }
-    }
-
-    public void beginTransaction(EntityTransaction transaction) {
-        if (!transaction.isActive()) {
-            transaction.begin();
         }
     }
 
@@ -71,10 +59,12 @@ public class DistributoreDAO {
 
     public void rimuoviDistributore(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
         try {
-            beginTransaction(em);
+            beginTransaction(transaction);
             DistributoreAutorizzato distributore = em.find(DistributoreAutorizzato.class, id);
-            if (mezzo != null) {
+            if (distributore != null) {
                 em.remove(distributore);
             }
             commitTransaction(em);

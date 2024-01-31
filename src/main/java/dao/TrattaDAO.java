@@ -7,6 +7,7 @@ import entities.Tratta;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 import java.time.Duration;
 
@@ -17,6 +18,10 @@ public class TrattaDAO {
     public TrattaDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
+    public TrattaDAO() {
+        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
+    }
+
 
     public void aggiungiTratta(Tratta tratta) {
         EntityManager em = emf.createEntityManager();
@@ -32,7 +37,9 @@ public class TrattaDAO {
         }
     }
 
-    public int numeroDiVoltePercorso (long id_mezzo, long id_tratta){
+    public Long numeroDiVoltePercorso (long id_mezzo, long id_tratta){
+
+        Long conteggioNTratte = 0L;
 
         EntityManager em = emf.createEntityManager();
         try {
@@ -44,11 +51,12 @@ public class TrattaDAO {
                 Mezzo mezzoId = (Mezzo) em.createQuery(jpql, Mezzo.class).setParameter("id_mezzo", id_mezzo).getResultList();
                 Percorso id_percorso = mezzoId.getPercorso();
                 String jpql2 = "SELECT COUNT(DISTINCT t) FROM Tratta t WHERE t.percorso.id = :id_percorso";
-                Long conteggioNTratte = em.createQuery(jpql2, Long.class).setParameter("id_percorso", id_percorso.getIdPercorso()).getSingleResult();
+                conteggioNTratte = em.createQuery(jpql2, Long.class).setParameter("id_percorso", id_percorso.getIdPercorso()).getSingleResult();
             }
         } finally {
-            closeEntityManager();
+            closeEntityManager(em);
         }
+        return conteggioNTratte;
     }
 
 

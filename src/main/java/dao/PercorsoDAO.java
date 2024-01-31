@@ -14,9 +14,10 @@ import java.util.List;
 
 public class PercorsoDAO {
 
-    public PercorsoDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
-    }
+    private EntityManagerFactory emf;
+
+
+    public PercorsoDAO() {this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");}
 
     public void aggiungiPercorso(Percorso percorso) {
         EntityManager em = emf.createEntityManager();
@@ -25,9 +26,9 @@ public class PercorsoDAO {
         try {
             beginTransaction(transaction);
             em.persist(percorso);
-            commitTransaction(transaction, em);
+            commitTransaction(em);
         } catch (Exception e) {
-            rollbackTransaction(transaction, em);
+            rollbackTransaction(em);
             throw e;
         } finally {
             closeEntityManager(em);
@@ -36,8 +37,10 @@ public class PercorsoDAO {
 
     public void rimuovipercorso(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
         try {
-            beginTransaction(em);
+            beginTransaction(transaction);
             Percorso percorso = em.find(Percorso.class, id);
             if (percorso != null) {
                 em.remove(percorso);
@@ -73,10 +76,6 @@ public class PercorsoDAO {
         if (em != null && em.isOpen()) {
             em.close();
         }
-    }
-
-    public PercorsoDAO(){
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
     }
     public List<Duration> calcolaTempoMedioPercorso(){
         EntityManager em = emf.createEntityManager();
