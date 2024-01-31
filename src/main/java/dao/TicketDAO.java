@@ -1,5 +1,6 @@
 package dao;
 
+import entities.DistributoreAutorizzato;
 import entities.Ticket;
 
 import javax.persistence.EntityManager;
@@ -47,6 +48,7 @@ public class TicketDAO {
         try {
             beginTransaction(transaction);
             em.persist(ticket);
+//            em.refresh(ticket);
             commitTransaction(em);
         } catch (Exception e) {
             rollbackTransaction(em);
@@ -118,5 +120,12 @@ public class TicketDAO {
         } finally {
             closeEntityManager(em);
         }
+    }
+
+    public Ticket getById(Long id){
+        EntityManager em = emf.createEntityManager();
+        Ticket ticket = em.find(Ticket.class, id);
+        em.close();
+        return ticket;
     }
 }
