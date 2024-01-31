@@ -13,8 +13,8 @@ public class DistributoreAutorizzato extends RivenditoreAutorizzato {
     public DistributoreAutorizzato() {
     }
 
-    public DistributoreAutorizzato(List<Ticket> ticketDistribuiti, boolean attivo) {
-        super(ticketDistribuiti);
+    public DistributoreAutorizzato(Long idDistributore, List<Ticket> ticketDistribuiti, boolean attivo) {
+        super(idDistributore, ticketDistribuiti);
         this.attivo = attivo;
     }
 

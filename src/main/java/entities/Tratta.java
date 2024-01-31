@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 @Entity
@@ -20,6 +21,15 @@ public class Tratta {
     @ManyToOne
     @JoinColumn(name = "id_tratta")
     private Percorso percorso;
+
+
+    public Duration getTempoPercorrenzaTratta(){
+        if (dataOraInizioTratta != null && dataOraFineTratta != null){
+            return Duration.between(dataOraInizioTratta, dataOraFineTratta);
+        } else {
+            return Duration.ZERO;
+        }
+    }
 
 
     public Tratta() {

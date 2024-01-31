@@ -34,4 +34,36 @@ public class Manutenzione {
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
     }
+
+    public Long getIdManutenzione() {
+        return idManutenzione;
+    }
+
+    public void setIdManutenzione(Long idManutenzione) {
+        this.idManutenzione = idManutenzione;
+    }
+
+    public Mezzo getMezzo() {
+        return mezzo;
+    }
+
+    public void setMezzo(Mezzo mezzo) {
+        this.mezzo = mezzo;
+    }
+
+    public LocalDateTime getDataInizio() {
+        return dataInizio;
+    }
+
+    public void setDataInizio(LocalDateTime dataInizio) {
+        this.dataInizio = dataInizio;
+    }
+
+    public LocalDateTime getDataFine() {
+        return dataFine;
+    }
+
+    public void setDataFine(LocalDateTime dataFine) {
+        this.dataFine = dataFine;
+    }
 }

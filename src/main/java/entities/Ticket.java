@@ -120,4 +120,20 @@ public class Ticket {
     public void setMezzoAttivazione(Mezzo mezzi) {
         this.mezzi = (List<Mezzo>) mezzi;
     }
+
+    public List<Utente> getUtenti() {
+        return utenti;
+    }
+
+    public void setUtenti(List<Utente> utenti) {
+        this.utenti = utenti;
+    }
+
+    public List<Mezzo> getMezzi() {
+        return mezzi;
+    }
+
+    public void setMezzi(List<Mezzo> mezzi) {
+        this.mezzi = mezzi;
+    }
 }

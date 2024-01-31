@@ -21,7 +21,8 @@ public class RivenditoreAutorizzato {
     public RivenditoreAutorizzato() {
     }
 
-    public RivenditoreAutorizzato(List<Ticket> ticketDistribuiti) {
+    public RivenditoreAutorizzato(Long idDistributore, List<Ticket> ticketDistribuiti) {
+        this.idDistributore = idDistributore;
         this.ticketDistribuiti = ticketDistribuiti;
     }
 
