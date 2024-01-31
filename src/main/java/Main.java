@@ -55,14 +55,6 @@ public class Main {
 //        }
 
         try {
-            //rivenditore
-            DistributoreAutorizzato distributore = new DistributoreAutorizzato();
-            distributore.setAttivo(true);
-            distributore.setTicketDistribuiti(ticketList);
-
-            distributoreDAO.saveDistributore(distributore);
-
-
             //ticket
             Ticket ticket = new Ticket();
             ticket.setDataVendita(LocalDateTime.now());
@@ -70,9 +62,17 @@ public class Main {
             ticket.setValidita(Ticket.Validita.WEEK);
 //            ticket.setRivenditoreAutorizzato(distributore);
 
-            distributore.getTicketDistribuiti().add(ticket);
-
             ticketDAO.aggiungiTicket(ticket);
+
+
+            //rivenditore
+            DistributoreAutorizzato distributore = new DistributoreAutorizzato();
+            distributore.setAttivo(true);
+            ticketList.add(ticket);
+            distributore.setTicketDistribuiti(ticketList);
+
+            distributoreDAO.saveDistributore(distributore);
+
 
             //utente
             Utente utente1 = new Utente();
