@@ -70,7 +70,9 @@ public class Main {
             ticket.setValidita(Ticket.Validita.WEEK);
 //            ticket.setRivenditoreAutorizzato(distributore);
 
-            ticketList.add(ticket);
+            distributore.getTicketDistribuiti().add(ticket);
+
+            ticketDAO.aggiungiTicket(ticket);
 
             //utente
             Utente utente1 = new Utente();
@@ -78,9 +80,6 @@ public class Main {
             utente1.setCognome("Rossi");
             utente1.setTicket(ticket);
 
-
-            //salvataggio
-            ticketDAO.aggiungiTicket(ticket);
             utenteDAO.aggiungiUtente(utente1);
 
 
