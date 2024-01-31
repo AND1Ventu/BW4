@@ -12,8 +12,6 @@ public class TicketDAO {
 
     private EntityManagerFactory emf;
 
-    public MezzoDAO mezzoDAO = new MezzoDAO();
-
     public TicketDAO() {
         this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
     }
@@ -79,20 +77,5 @@ public class TicketDAO {
         }
     }
 
-    //BIGLIETTI VIDIMATI SUL MEZZO
-    public int ticketsVidimatiSulMezzo(Mezzo mezzo, LocalDateTime inizioPeriodo, LocalDateTime finePeriodo) {
-        List<Ticket> ticketsVidimati =mezzoDAO.getBigliettiVidimatiPerMezzoEPeriodo(mezzo,inizioPeriodo,finePeriodo);
-        return ticketsVidimati.size();
-    }
-
-    public void annullaticketsVidimatiSulMezzo(Mezzo mezzo){
-        List<Ticket> ticketsVidimati = mezzoDAO.getBigliettiVidimatiPerMezzo(mezzo);
-
-        for(Ticket ticket: ticketsVidimati){
-            if (ticket.getDataAttivazione() != LocalDateTime.now()){
-                System.out.println("Questo bligietto è annullato.");
-            }
-        }
-    }
 }
 

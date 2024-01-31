@@ -2,14 +2,14 @@ package entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+import java.util.List;
 @Entity
+@Table(name = "tratta")
 public class Tratta {
 
     @Id
     @ManyToOne
     @JoinColumn(name = "id_tratta")
-    @Column(name = "id_tratta")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTratta;
 
@@ -22,33 +22,8 @@ public class Tratta {
     public Tratta() {
     }
 
-    public Tratta(Long idTratta, LocalDateTime dataOraInizioTratta, LocalDateTime dataOraFineTratta) {
-        this.idTratta = idTratta;
+    public Tratta(LocalDateTime dataOraInizioTratta, LocalDateTime dataOraFineTratta) {
         this.dataOraInizioTratta = dataOraInizioTratta;
-        this.dataOraFineTratta = dataOraFineTratta;
-    }
-
-    public Long getIdTratta() {
-        return idTratta;
-    }
-
-    public void setIdTratta(Long idTratta) {
-        this.idTratta = idTratta;
-    }
-
-    public LocalDateTime getDataOraInizioTratta() {
-        return dataOraInizioTratta;
-    }
-
-    public void setDataOraInizioTratta(LocalDateTime dataOraInizioTratta) {
-        this.dataOraInizioTratta = dataOraInizioTratta;
-    }
-
-    public LocalDateTime getDataOraFineTratta() {
-        return dataOraFineTratta;
-    }
-
-    public void setDataOraFineTratta(LocalDateTime dataOraFineTratta) {
         this.dataOraFineTratta = dataOraFineTratta;
     }
 }

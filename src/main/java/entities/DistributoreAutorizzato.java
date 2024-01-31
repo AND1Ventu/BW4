@@ -1,6 +1,10 @@
 package entities;
-import javax.persistence.*;
-@Entity
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.List;
+
+
 public class DistributoreAutorizzato extends RivenditoreAutorizzato {
 
     private boolean attivo;
@@ -8,7 +12,8 @@ public class DistributoreAutorizzato extends RivenditoreAutorizzato {
     public DistributoreAutorizzato() {
     }
 
-    public DistributoreAutorizzato(boolean attivo) {
+    public DistributoreAutorizzato(List<Ticket> ticketDistribuiti, boolean attivo) {
+        super(ticketDistribuiti);
         this.attivo = attivo;
     }
 

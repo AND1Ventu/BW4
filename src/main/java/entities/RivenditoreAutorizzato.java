@@ -1,12 +1,13 @@
 package entities;
 
 import javax.persistence.*;
-
-import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
-
 @Entity
-public class RivenditoreAutorizzato {
+@Table(name = "rivenditore_autorizzato")
+@DiscriminatorColumn(name = "tipo_rivenditore")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class RivenditoreAutorizzato {
 
     @Id
     @Column(name = "id_distributore")
@@ -14,14 +15,13 @@ public class RivenditoreAutorizzato {
     private Long idDistributore;
 
 
-    @OneToMany(mappedBy = "rivenditore_autorizzato")
+    @OneToMany(mappedBy = "rivenditoreAutorizzato")
     private List<Ticket> ticketDistribuiti;
 
     public RivenditoreAutorizzato() {
     }
 
-    public RivenditoreAutorizzato(Long idDistributore, List<Ticket> ticketDistribuiti) {
-        this.idDistributore = idDistributore;
+    public RivenditoreAutorizzato(List<Ticket> ticketDistribuiti) {
         this.ticketDistribuiti = ticketDistribuiti;
     }
 
