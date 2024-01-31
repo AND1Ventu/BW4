@@ -1,12 +1,12 @@
 package dao;
 
-import entities.*;
+import entities.Ticket;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.EntityTransaction;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class TicketDAO {
 
@@ -16,28 +16,65 @@ public class TicketDAO {
         this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
     }
 
+    public void closeEntityManager(EntityManager em) {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+    }
+
+    public void beginTransaction(EntityTransaction transaction) {
+        if (!transaction.isActive()) {
+            transaction.begin();
+        }
+    }
+
+    public void commitTransaction(EntityManager em) {
+        em.getTransaction().commit();
+        closeEntityManager(em);
+    }
+
+    public void rollbackTransaction(EntityManager em) {
+        if (em.getTransaction().isActive()) {
+            em.getTransaction().rollback();
+        }
+        closeEntityManager(em);
+    }
+
     public void aggiungiTicket(Ticket ticket) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.persist(ticket);
-        em.getTransaction().commit();
-        em.close();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            beginTransaction(transaction);
+            em.persist(ticket);
+            commitTransaction(transaction, em);
+        } catch (Exception e) {
+            rollbackTransaction(transaction, em);
+            throw e;
+        } finally {
+            closeEntityManager(em);
+        }
     }
 
     public void rimuoviTicket(Long id) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Ticket ticket = em.find(Ticket.class, id);
-        if (ticket != null) {
-            em.remove(ticket);
+        try {
+            beginTransaction(em);
+            Ticket ticket = em.find(Ticket.class, id);
+            if (ticket != null) {
+                em.remove(ticket);
+            }
+            commitTransaction(em);
+        } catch (Exception e) {
+            rollbackTransaction(em);
+            throw e;
+        } finally {
+            closeEntityManager(em);
         }
-        em.getTransaction().commit();
-        em.close();
     }
 
     public void ricercaTicketPerId(Long id) {
         EntityManager em = emf.createEntityManager();
-
         try {
             Ticket result = em.find(Ticket.class, id);
 
@@ -56,26 +93,25 @@ public class TicketDAO {
                 }
             }
         } finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
+            closeEntityManager(em);
         }
     }
 
     public Long attivatiPerDate(LocalDateTime data_inizio, LocalDateTime data_fine) {
         EntityManager em = emf.createEntityManager();
-
-        try{
+        try {
+            beginTransaction(em);
             String jpql = "SELECT COUNT(t) FROM Ticket t WHERE t.dataAttivazione BETWEEN :dataInizio AND :dataFine";
 
             return em.createQuery(jpql, Long.class)
                     .setParameter("dataInizio", data_inizio)
                     .setParameter("dataFine", data_fine)
                     .getSingleResult();
+        } catch (Exception e) {
+            rollbackTransaction(em);
+            throw e;
         } finally {
-            em.close();
+            closeEntityManager(em);
         }
     }
-
 }
-

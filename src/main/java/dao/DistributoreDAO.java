@@ -1,7 +1,6 @@
 package dao;
 
 import entities.DistributoreAutorizzato;
-import entities.RivenditoreAutorizzato;
 import entities.Ticket;
 
 import javax.persistence.EntityManager;
@@ -28,16 +27,21 @@ public class DistributoreDAO {
         EntityTransaction transaction = em.getTransaction();
 
         try {
-            transaction.begin();
-            em.persist(distributore);
-            transaction.commit();
+            beginTransaction(transaction);
+            em.merge(distributore);
+            commitTransaction(transaction, em);
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
+            rollbackTransaction(transaction, em);
             e.printStackTrace();
         } finally {
             em.close();
+        }
+    }
+
+
+    public void beginTransaction(EntityTransaction transaction) {
+        if (!transaction.isActive()) {
+            transaction.begin();
         }
     }
 
@@ -79,4 +83,13 @@ public class DistributoreDAO {
         return conteggioTicket;
     }
 
+    public void commitTransaction(EntityTransaction transaction, EntityManager em) {
+        transaction.commit();
+    }
+
+    public void rollbackTransaction(EntityTransaction transaction, EntityManager em) {
+        if (transaction.isActive()) {
+            transaction.rollback();
+        }
+    }
 }

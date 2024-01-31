@@ -8,10 +8,8 @@ import java.util.List;
 public class Tratta {
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "id_tratta")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTratta;
+    private long id;
 
     @Column(name = "data_ora_inizio")
     private LocalDateTime dataOraInizioTratta;
@@ -19,11 +17,48 @@ public class Tratta {
     @Column(name = "data_ora_fine")
     private LocalDateTime dataOraFineTratta;
 
+    @ManyToOne
+    @JoinColumn(name = "id_tratta")
+    private Percorso percorso;
+
+
     public Tratta() {
     }
 
     public Tratta(LocalDateTime dataOraInizioTratta, LocalDateTime dataOraFineTratta) {
         this.dataOraInizioTratta = dataOraInizioTratta;
         this.dataOraFineTratta = dataOraFineTratta;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataOraInizioTratta() {
+        return dataOraInizioTratta;
+    }
+
+    public void setDataOraInizioTratta(LocalDateTime dataOraInizioTratta) {
+        this.dataOraInizioTratta = dataOraInizioTratta;
+    }
+
+    public LocalDateTime getDataOraFineTratta() {
+        return dataOraFineTratta;
+    }
+
+    public void setDataOraFineTratta(LocalDateTime dataOraFineTratta) {
+        this.dataOraFineTratta = dataOraFineTratta;
+    }
+
+    public Percorso getPercorso() {
+        return percorso;
+    }
+
+    public void setPercorso(Percorso percorso) {
+        this.percorso = percorso;
     }
 }

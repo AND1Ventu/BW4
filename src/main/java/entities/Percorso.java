@@ -14,8 +14,7 @@ public class Percorso {
     @Column(name = "nome_percorso")
     private String nomePercorso;
 
-    @Column(name = "id_tratta")
-    @OneToMany(mappedBy = "idTratta")
+    @OneToMany(mappedBy = "percorso")
     private List<Tratta> tratte;
 
     @OneToMany(mappedBy = "percorso")

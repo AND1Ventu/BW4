@@ -19,16 +19,18 @@ public class Utente {
     @Column(name = "n_tessera", unique = true)
     private Long nTessera;
 
-    @OneToMany(mappedBy = "utente")
-    private List<Ticket> tickets;
+    @ManyToOne
+    @JoinColumn(name = "id_ticket")
+    private Ticket ticket;
 
     public Utente() {
     }
 
-    public Utente(String nome, String cognome, Long nTessera, List<Ticket> tickets) {
+    public Utente(Long idUtente, String nome, String cognome, Long nTessera, Ticket ticket) {
+        this.idUtente = idUtente;
         this.nome = nome;
         this.cognome = cognome;
         this.nTessera = nTessera;
-        this.tickets = tickets;
+        this.ticket = ticket;
     }
 }
