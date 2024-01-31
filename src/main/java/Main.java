@@ -60,13 +60,13 @@ public class Main {
             ticket.setDataVendita(LocalDateTime.now());
             ticket.setTipologia(Ticket.Tipologia.ABBONAMENTO);
             ticket.setValidita(Ticket.Validita.WEEK);
-//            ticket.setRivenditoreAutorizzato(distributore);
+            ticket.setRivenditoreAutorizzato(distributore);
 
             ticketDAO.aggiungiTicket(ticket);
 
 
             //rivenditore
-            DistributoreAutorizzato distributore = new DistributoreAutorizzato();
+            distributore = new DistributoreAutorizzato();
             distributore.setAttivo(true);
             ticketList.add(ticket);
             distributore.setTicketDistribuiti(ticketList);
