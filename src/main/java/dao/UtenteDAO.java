@@ -1,30 +1,28 @@
 package dao;
 
-import entities.Manutenzione;
-import entities.Percorso;
-import entities.Tratta;
+import entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.EntityTransaction;
+import java.time.LocalDateTime;
 
-public class PercorsoDAO {
+public class UtenteDAO {
 
-    public PercorsoDAO() {
+    private EntityManagerFactory emf;
+
+    public UtenteDAO() {
         this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
     }
 
-    public void aggiungiPercorso(Percorso percorso) {
+    public void aggiungiUtente(Utente utente) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
 
         try {
             beginTransaction(transaction);
-            em.persist(percorso);
+            em.persist(utente);
             commitTransaction(transaction, em);
         } catch (Exception e) {
             rollbackTransaction(transaction, em);
@@ -34,13 +32,13 @@ public class PercorsoDAO {
         }
     }
 
-    public void rimuovipercorso(Long id) {
+    public void rimuoviUtente(Long id) {
         EntityManager em = emf.createEntityManager();
         try {
             beginTransaction(em);
-            Percorso percorso = em.find(Percorso.class, id);
-            if (percorso != null) {
-                em.remove(percorso);
+            Utente utente = em.find(Utente.class, id);
+            if (utente != null) {
+                em.remove(utente);
             }
             commitTransaction(em);
         } catch (Exception e) {
@@ -75,35 +73,7 @@ public class PercorsoDAO {
         }
     }
 
-    public PercorsoDAO(){
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
-    }
-    public List<Duration> calcolaTempoMedioPercorso(){
-        EntityManager em = emf.createEntityManager();
-        try {
-            List<Percorso> percorsi = em.createQuery("SELECT p FROM Percorso p", Percorso.class).getResultList();
-            List<Duration> tempiMedi = new ArrayList<>();
 
-            for (Percorso percorso : percorsi){
-                List<Tratta> tratte = percorso.getTratte();
-                Duration tempoTotale = Duration.ZERO;
-
-                for (Tratta tratta : tratte) {
-                    tempoTotale = tempoTotale.plus(tratta.getTempoPercorrenzaTratta());
-                }
-
-                long numeroTratte = tratte.size();
-                Duration tempoMedioPercorrenza = tempoTotale.dividedBy(numeroTratte);
-
-                tempiMedi.add(tempoMedioPercorrenza);
-            }
-
-            return tempiMedi;
-
-        } finally {
-            em.close();
-        }
-    }
 
 
 }
