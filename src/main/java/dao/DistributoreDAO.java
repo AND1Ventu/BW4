@@ -74,7 +74,7 @@ public class DistributoreDAO {
         try {
             beginTransaction(em);
             DistributoreAutorizzato distributore = em.find(DistributoreAutorizzato.class, id);
-            if (mezzo != null) {
+            if (distributore != null) {
                 em.remove(distributore);
             }
             commitTransaction(em);
