@@ -52,10 +52,10 @@ public class Main {
 //            utenteDAO.aggiungiUtente(utente);
 
             //percorso
-//            Percorso percorso = new Percorso();
-//            percorso.setNomePercorso("aeroporto-stazione");
+ //           Percorso percorso = new Percorso();
+ //           percorso.setNomePercorso("aeroporto-stazione");
 //
-//            percorsoDAO.aggiungiPercorso(percorso);
+ //           percorsoDAO.aggiungiPercorso(percorso);
 
             //tratta
 //            Tratta tratta = new Tratta();
@@ -121,21 +121,38 @@ public class Main {
         }
 
         //numero biglietti venduti da un distributore in un range temporale
+        System.out.println("Biglietti venduti da un distributore in un range temporale");
         System.out.println(distributoreDAO.getTicketPuntoEmissioneById(63L,LocalDateTime.of(2024,01,01,0,0),LocalDateTime.of(2024,02,28,0,0)));
 
         //verifica validità abbonamento
+        System.out.println("Verifica validità abbonamento");
         ticketDAO.ricercaTicketPerId(59L);
 
-        //numri biglietti vidimati su un mezzo
+        //numeri biglietti vidimati su un mezzo
+        System.out.println("Numeri biglietti vidimati su un mezzo");
         System.out.println(mezzoDAO.numeroBigliettiMezzo(34L));
 
         //numero biglietti vidimati in un periodo di tempo
+        System.out.println("Numero biglietti vidimati in un periodo di tempo");
         System.out.println(ticketDAO.attivatiPerDate(LocalDateTime.of(2024,01,01,0,0),LocalDateTime.of(2024,12,31,0,0)));
 
         //tenere traccia dello stato di servizio del mezzo
+        System.out.println("Tenere traccia dello stato di servizio del mezzo");
         System.out.println(mezzoDAO.statoManutenzione(35L));
 
-        //
+        //numero volte tratta-percorso da un mezzo
+        System.out.println("Numero volte tratta-percorso da un mezzo");
+        System.out.println(trattaDAO.numeroDiVoltePercorso(34,33));
+
+        //tempo effettivo di ogni tratta
+        System.out.println("Tempo effettivo di ogni tratta");
+        System.out.println(trattaDAO.getTempoPercorrenzaTratta(33L).toMinutes() + " minuti");
+
+        //tempo medio percorrenza percorso
+        System.out.println("Tempo medio percorrenza percorso");
+        System.out.println(percorsoDAO.calcolaTempoMedioPercorso());
+
+
 
     }
 

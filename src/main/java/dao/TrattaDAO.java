@@ -48,7 +48,7 @@ public class TrattaDAO {
 
             if ((mezzo != null) && (tratta != null)) {
                 String jpql = "SELECT m FROM Mezzo m WHERE m.id = :id_mezzo";
-                Mezzo mezzoId = (Mezzo) em.createQuery(jpql, Mezzo.class).setParameter("id_mezzo", id_mezzo).getResultList();
+                Mezzo mezzoId = em.createQuery(jpql, Mezzo.class).setParameter("id_mezzo", id_mezzo).getSingleResult();
                 Percorso id_percorso = mezzoId.getPercorso();
                 String jpql2 = "SELECT COUNT(DISTINCT t) FROM Tratta t WHERE t.percorso.id = :id_percorso";
                 conteggioNTratte = em.createQuery(jpql2, Long.class).setParameter("id_percorso", id_percorso.getIdPercorso()).getSingleResult();
@@ -83,6 +83,17 @@ public class TrattaDAO {
     public void closeEntityManager(EntityManager em) {
         if (em != null && em.isOpen()) {
             em.close();
+        }
+    }
+
+    public Duration getTempoPercorrenzaTratta(Long id){
+        EntityManager em = emf.createEntityManager();
+        Tratta tratta = em.find(Tratta.class, id);
+
+        if (tratta.getDataOraInizioTratta() != null && tratta.getDataOraFineTratta() != null){
+            return Duration.between(tratta.getDataOraInizioTratta(), tratta.getDataOraFineTratta());
+        } else {
+            return Duration.ZERO;
         }
     }
 
