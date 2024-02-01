@@ -16,7 +16,6 @@ public class Utente {
 
     private String cognome;
 
-
     @ManyToOne
     @JoinColumn(name = "id_ticket")
     private Ticket ticket;

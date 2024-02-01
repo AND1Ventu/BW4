@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f10db5d3-a72f-4fbb-8122-2749160d62c6" name="Changes" comment="propva push">
+    <list default="true" id="f10db5d3-a72f-4fbb-8122-2749160d62c6" name="Changes" comment="last push for today">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PercorsoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PercorsoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TrattaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TrattaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Tratta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Tratta.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +64,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;AndreaV&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;mauro&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
 }</component>
@@ -83,8 +86,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-2f79fb23" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -145,15 +148,39 @@
       <option name="project" value="LOCAL" />
       <updated>1706701625056</updated>
     </task>
-    <task id="LOCAL-00007" summary="push per verifica">
+    <task id="LOCAL-00007" summary="push">
       <option name="closed" value="true" />
-      <created>1706713172849</created>
+      <created>1706708161967</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1706713172849</updated>
+      <updated>1706708161967</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="pulizia main">
+      <option name="closed" value="true" />
+      <created>1706708924065</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706708924065</updated>
+    </task>
+    <task id="LOCAL-00009" summary="push">
+      <option name="closed" value="true" />
+      <created>1706712213278</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706712213278</updated>
+    </task>
+    <task id="LOCAL-00010" summary="last push for today">
+      <option name="closed" value="true" />
+      <created>1706720260202</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706720260202</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,7 +201,9 @@
     <MESSAGE value="metodoDAO" />
     <MESSAGE value="push per Andrea" />
     <MESSAGE value="propva push" />
-    <MESSAGE value="push per verifica" />
-    <option name="LAST_COMMIT_MESSAGE" value="push per verifica" />
+    <MESSAGE value="pulizia main" />
+    <MESSAGE value="push" />
+    <MESSAGE value="last push for today" />
+    <option name="LAST_COMMIT_MESSAGE" value="last push for today" />
   </component>
 </project>

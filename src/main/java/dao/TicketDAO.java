@@ -1,5 +1,6 @@
 package dao;
 
+import entities.DistributoreAutorizzato;
 import entities.Ticket;
 
 import javax.persistence.EntityManager;
@@ -46,7 +47,8 @@ public class TicketDAO {
 
         try {
             beginTransaction(transaction);
-            em.persist(ticket);
+            em.merge(ticket);
+//            em.refresh(ticket);
             commitTransaction(em);
         } catch (Exception e) {
             rollbackTransaction(em);
@@ -86,9 +88,9 @@ public class TicketDAO {
 
                 if (dataAttivazione == null) {
                     System.out.println("Il biglietto è ancora da attivare");
-                } else if ((validita == Ticket.Validita.WEEK) && result.getDataAttivazione().plusDays(7).isBefore(LocalDateTime.now())) {
+                } else if ((validita == Ticket.Validita.WEEK) && dataAttivazione.plusDays(7).isAfter(LocalDateTime.now())) {
                     System.out.println("Il biglietto settimanale è ancora valido e scade il " + dataAttivazione.plusDays(7));
-                } else if ((validita == Ticket.Validita.MONTH) && result.getDataAttivazione().plusDays(30).isBefore(LocalDateTime.now())) {
+                } else if ((validita == Ticket.Validita.MONTH) && dataAttivazione.plusDays(30).isAfter(LocalDateTime.now())) {
                     System.out.println("Il biglietto mensile è ancora valido e scade il " + dataAttivazione.plusDays(30));
                 } else {
                     System.out.println("Il biglietto è scaduto");
@@ -118,5 +120,12 @@ public class TicketDAO {
         } finally {
             closeEntityManager(em);
         }
+    }
+
+    public Ticket getById(Long id){
+        EntityManager em = emf.createEntityManager();
+        Ticket ticket = em.find(Ticket.class, id);
+        em.close();
+        return ticket;
     }
 }

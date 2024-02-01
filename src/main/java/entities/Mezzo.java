@@ -88,6 +88,7 @@ public class Mezzo {
     }
 
     public void setInServizio(boolean inServizio) {
+        this.manutenzione = !inServizio;
         this.inServizio = inServizio;
     }
 
@@ -113,5 +114,16 @@ public class Mezzo {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "idMezzo=" + idMezzo +
+                ", tipologia=" + tipologia +
+                ", manutenzione=" + manutenzione +
+                ", capienza=" + capienza +
+                ", inServizio=" + inServizio +
+                ", percorso=" + percorso;
     }
 }

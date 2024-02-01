@@ -9,8 +9,6 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @ManyToOne
-//    @JoinColumn(name = "id_ticket")
     private Long idTicket;
 
     @ManyToOne

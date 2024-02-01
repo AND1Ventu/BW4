@@ -1,8 +1,10 @@
 package dao;
 
+import entities.DistributoreAutorizzato;
 import entities.Manutenzione;
 import entities.Percorso;
 import entities.Tratta;
+import dao.TrattaDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +12,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PercorsoDAO {
 
@@ -77,31 +81,46 @@ public class PercorsoDAO {
             em.close();
         }
     }
-    public List<Duration> calcolaTempoMedioPercorso(){
+
+    public Map<String,Long> calcolaTempoMedioPercorso(){
         EntityManager em = emf.createEntityManager();
+        TrattaDAO trattaDAO = new TrattaDAO();
         try {
             List<Percorso> percorsi = em.createQuery("SELECT p FROM Percorso p", Percorso.class).getResultList();
-            List<Duration> tempiMedi = new ArrayList<>();
+            Map<String,Long> tempiMedi = new HashMap<>();
 
             for (Percorso percorso : percorsi){
                 List<Tratta> tratte = percorso.getTratte();
                 Duration tempoTotale = Duration.ZERO;
 
+
+
                 for (Tratta tratta : tratte) {
-                    tempoTotale = tempoTotale.plus(tratta.getTempoPercorrenzaTratta());
+                    em.refresh(tratta);
+                    tempoTotale = tempoTotale.plus(trattaDAO.getTempoPercorrenzaTratta(tratta.getId()));
                 }
 
-                long numeroTratte = tratte.size();
-                Duration tempoMedioPercorrenza = tempoTotale.dividedBy(numeroTratte);
+                em.refresh(percorso);
 
-                tempiMedi.add(tempoMedioPercorrenza);
+                long numeroTratte = tratte.size();
+                Long tempoMedioPercorrenza = tempoTotale.toMinutes() / numeroTratte;
+
+                tempiMedi.put(percorso.getIdPercorso().toString(), tempoMedioPercorrenza);
             }
+
 
             return tempiMedi;
 
         } finally {
             em.close();
         }
+    }
+
+    public Percorso getPercorsoById(Long id) {
+        EntityManager em = emf.createEntityManager();
+        Percorso percorso = em.find(Percorso.class, id);
+        em.close();
+        return percorso;
     }
 
 

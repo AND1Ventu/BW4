@@ -66,4 +66,13 @@ public class Manutenzione {
     public void setDataFine(LocalDateTime dataFine) {
         this.dataFine = dataFine;
     }
+
+    @Override
+    public String toString() {
+        return
+                "idManutenzione=" + idManutenzione +
+                ", mezzo=" + mezzo +
+                ", dataInizio=" + dataInizio +
+                ", dataFine=" + dataFine;
+    }
 }
