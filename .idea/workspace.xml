@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f10db5d3-a72f-4fbb-8122-2749160d62c6" name="Changes" comment="push">
+    <list default="true" id="f10db5d3-a72f-4fbb-8122-2749160d62c6" name="Changes" comment="last push for today">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/MezzoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/MezzoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/PercorsoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PercorsoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TicketDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TicketDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Manutenzione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Manutenzione.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Mezzo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Mezzo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TrattaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TrattaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Tratta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Tratta.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706712213278</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="last push for today">
+      <option name="closed" value="true" />
+      <created>1706720260202</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706720260202</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,6 +203,7 @@
     <MESSAGE value="propva push" />
     <MESSAGE value="pulizia main" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="last push for today" />
+    <option name="LAST_COMMIT_MESSAGE" value="last push for today" />
   </component>
 </project>

@@ -23,15 +23,6 @@ public class Tratta {
     private Percorso percorso;
 
 
-    public Duration getTempoPercorrenzaTratta(){
-        if (dataOraInizioTratta != null && dataOraFineTratta != null){
-            return Duration.between(dataOraInizioTratta, dataOraFineTratta);
-        } else {
-            return Duration.ZERO;
-        }
-    }
-
-
     public Tratta() {
     }
 
