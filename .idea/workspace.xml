@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10db5d3-a72f-4fbb-8122-2749160d62c6" name="Changes" comment="prova push">
-      <change afterPath="$PROJECT_DIR$/src/main/java/MainGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MainProva.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/BaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/BaseDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DistributoreDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DistributoreDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/MezzoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/MezzoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PercorsoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PercorsoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RivenditoreDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RivenditoreDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TicketDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TicketDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Percorso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Percorso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +32,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/Main.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/MainGUI.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/dao/DistributoreDAO.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/dao/ManutenzioneDAO.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/dao/MezzoDAO.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/dao/PercorsoDAO.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/dao/TicketDAO.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/dao/TrattaDAO.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/dao/UtenteDAO.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -79,6 +66,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "AndreaV",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/mauro/Downloads/openjfx-21.0.2_windows-x64_bin-sdk/javafx-sdk-21.0.2",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3954023"

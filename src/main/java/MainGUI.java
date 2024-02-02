@@ -106,6 +106,7 @@ public class MainGUI extends Application {
         ticket.setTipologia(Ticket.Tipologia.ABBONAMENTO);
         ticket.setValidita(Ticket.Validita.MONTH);
         ticket.setRivenditoreAutorizzato(distributoreDAO.getAllDistributori().getFirst());
+        ticket.setDataAttivazione(LocalDateTime.now());
         ticketDAO.aggiungiTicket(ticket);
         System.out.println("Ticket inserito con successo.");
     }
