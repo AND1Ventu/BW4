@@ -12,13 +12,11 @@ import java.util.List;
 
 public class RivenditoreDAO extends BaseDAO{
 
-    private EntityManagerFactory emf;
-
     public RivenditoreDAO() {
         super("trasporto_pubblico");
     }
 
-    public void saveDistributore(RivenditoreAutorizzato rivenditore) {
+    public static void saveDistributore(RivenditoreAutorizzato rivenditore) {
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -38,7 +36,7 @@ public class RivenditoreDAO extends BaseDAO{
         EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             RivenditoreAutorizzato rivenditore = em.find(RivenditoreAutorizzato.class, id);
             if (rivenditore != null) {
                 em.remove(rivenditore);
@@ -91,14 +89,5 @@ public class RivenditoreDAO extends BaseDAO{
         return conteggioTicket;
     }
 
-    public void commitTransaction(EntityTransaction transaction, EntityManager em) {
-        transaction.commit();
-    }
-
-    public void rollbackTransaction(EntityTransaction transaction, EntityManager em) {
-        if (transaction.isActive()) {
-            transaction.rollback();
-        }
-    }
 }
 

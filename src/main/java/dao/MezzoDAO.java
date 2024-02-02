@@ -5,10 +5,7 @@ import entities.Mezzo;
 import entities.Manutenzione;
 import entities.Ticket;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -98,6 +95,18 @@ public class MezzoDAO extends BaseDAO {
         Mezzo mezzo = em.find(Mezzo.class, id);
         em.close();
         return mezzo;
+    }
+
+    public static List<Mezzo> getAllMezzi() {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            String jpql = "SELECT m FROM Mezzo m";
+            TypedQuery<Mezzo> query = em.createQuery(jpql, Mezzo.class);
+            return query.getResultList();
+        } finally {
+            closeEntityManager(em);
+        }
     }
 }
 

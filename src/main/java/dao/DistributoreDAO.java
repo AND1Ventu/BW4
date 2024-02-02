@@ -83,7 +83,7 @@ public class DistributoreDAO extends BaseDAO {
         return distributore;
     }
 
-    public List<DistributoreAutorizzato> getAllDistributori() {
+    public static List<DistributoreAutorizzato> getAllDistributori() {
         EntityManager em = emf.createEntityManager();
         List<DistributoreAutorizzato> distributori = em.createQuery("SELECT d FROM DistributoreAutorizzato d", DistributoreAutorizzato.class)
                 .getResultList();

@@ -62,4 +62,6 @@ public class Percorso {
     public void setMezzi(List<Mezzo> mezzi) {
         this.mezzi = mezzi;
     }
+
+
 }

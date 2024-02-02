@@ -73,16 +73,21 @@ public class MainInterface extends Application {
         switch ((int) btnNumber) {
             case 1:
                 resultLabel.setText("Biglietti venduti da un distributore: " +
-                        distributoreDAO.getTicketPuntoEmissioneById(1L, LocalDateTime.of(2024, 01, 01, 0, 0),
+                        distributoreDAO.getTicketPuntoEmissioneById(DistributoreDAO.getAllDistributori().getFirst().getIdDistributore(),
+                                LocalDateTime.of(2024, 01, 01, 0, 0),
                                 LocalDateTime.of(2024, 02, 28, 0, 0)));
                 break;
             case 2:
                 resultLabel.setText("Verifica validità abbonamento: ");
-                ticketDAO.ricercaTicketPerId(1L);
+                ticketDAO.ricercaTicketPerId(
+                        TicketDAO.getAllTickets().getFirst().getIdTicket()
+                );
                 break;
             case 3:
                 resultLabel.setText("Numeri biglietti vidimati su un mezzo: " +
-                        mezzoDAO.numeroBigliettiMezzo(1L));
+                        mezzoDAO.numeroBigliettiMezzo(
+                                MezzoDAO.getAllMezzi().getFirst().getIdMezzo()
+                        ));
                 break;
             case 4:
                 resultLabel.setText("Numero biglietti vidimati in un periodo di tempo: " +
@@ -91,15 +96,21 @@ public class MainInterface extends Application {
                 break;
             case 5:
                 resultLabel.setText("Tenere traccia dello stato di servizio del mezzo: " +
-                        mezzoDAO.statoManutenzione(1L));
+                        mezzoDAO.statoManutenzione(
+                                MezzoDAO.getAllMezzi().getFirst().getIdMezzo()
+                        ));
                 break;
             case 6:
                 resultLabel.setText("Numero volte tratta-percorso da un mezzo: " +
-                        trattaDAO.numeroDiVoltePercorso(2L, 1L));
+                        trattaDAO.numeroDiVoltePercorso(
+                                MezzoDAO.getAllMezzi().getFirst().getIdMezzo(),
+                                PercorsoDAO.getAllPercorsi().getFirst().getIdPercorso()));
                 break;
             case 7:
                 resultLabel.setText("Tempo effettivo di ogni tratta: " +
-                        trattaDAO.getTempoPercorrenzaTratta(1L).toMinutes() + " minuti");
+                        trattaDAO.getTempoPercorrenzaTratta(
+                                TrattaDAO.getAllTratte().getFirst().getId()
+                        ).toMinutes() + " minuti");
                 break;
             case 8:
                 resultLabel.setText("Tempo medio percorrenza percorso: " +

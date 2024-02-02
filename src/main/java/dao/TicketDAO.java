@@ -1,13 +1,10 @@
 package dao;
 
-import entities.DistributoreAutorizzato;
 import entities.Ticket;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.EntityTransaction;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TicketDAO extends BaseDAO{
 
@@ -99,5 +96,17 @@ public class TicketDAO extends BaseDAO{
         Ticket ticket = em.find(Ticket.class, id);
         em.close();
         return ticket;
+    }
+
+    public static List<Ticket> getAllTickets() {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            String jpql = "SELECT t FROM Ticket t";
+            TypedQuery<Ticket> query = em.createQuery(jpql, Ticket.class);
+            return query.getResultList();
+        } finally {
+            closeEntityManager(em);
+        }
     }
 }

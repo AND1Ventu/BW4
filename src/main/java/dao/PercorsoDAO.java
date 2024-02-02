@@ -6,10 +6,7 @@ import entities.Percorso;
 import entities.Tratta;
 import dao.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,5 +94,16 @@ public class PercorsoDAO extends BaseDAO {
         return percorso;
     }
 
+    public static List<Percorso> getAllPercorsi() {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            String jpql = "SELECT p FROM Percorso p";
+            TypedQuery<Percorso> query = em.createQuery(jpql, Percorso.class);
+            return query.getResultList();
+        } finally {
+            closeEntityManager(em);
+        }
+    }
 
 }

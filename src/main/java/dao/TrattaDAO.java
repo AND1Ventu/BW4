@@ -65,4 +65,15 @@ public class TrattaDAO extends BaseDAO {
         }
     }
 
+    public static List<Tratta> getAllTratte() {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            return em.createQuery("SELECT t FROM Tratta t", Tratta.class)
+                    .getResultList();
+        } finally {
+            closeEntityManager(em);
+        }
+    }
+
 }
