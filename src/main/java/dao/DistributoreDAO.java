@@ -11,63 +11,23 @@ import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DistributoreDAO {
-
-    private EntityManagerFactory emf;
+public class DistributoreDAO extends BaseDAO {
 
     public DistributoreDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
+        super("trasporto_pubblico");
     }
 
-    public void closeEntityManagerFactory() {
-        emf.close();
-    }
-
-    public void closeEntityManager(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
-
-    public void commitTransaction(EntityManager em) {
-        em.getTransaction().commit();
-        closeEntityManager(em);
-    }
-
-    public void rollbackTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
-        }
-        closeEntityManager(em);
-    }
-
-//    public void aggiungiDistributore(DistributoreAutorizzato distributore) {
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction transaction = em.getTransaction();
-//
-//        try {
-//            beginTransaction(transaction);
-//            em.persist(distributore);
-//            commitTransaction(transaction, em);
-//        } catch (Exception e) {
-//            rollbackTransaction(transaction, em);
-//            throw e;
-//        } finally {
-//            closeEntityManager(em);
-//        }
-//    }
 
     public void aggiungiDistributore(DistributoreAutorizzato distributore) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             em.persist(distributore);
-            commitTransaction(transaction, em);
+            commitTransaction(em);
 
         } catch (Exception e) {
-            rollbackTransaction(transaction, em);
+            rollbackTransaction( em);
             throw e;
         } finally {
             try {
@@ -83,10 +43,9 @@ public class DistributoreDAO {
 
     public void rimuoviDistributore(Long id) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             DistributoreAutorizzato distributore = em.find(DistributoreAutorizzato.class, id);
             if (distributore != null) {
                 em.remove(distributore);
@@ -102,27 +61,20 @@ public class DistributoreDAO {
 
     public void saveDistributore(DistributoreAutorizzato distributore) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             em.persist(distributore);
 //            em.refresh(distributore);
-            commitTransaction(transaction, em);
+            commitTransaction(em);
         } catch (Exception e) {
-            rollbackTransaction(transaction, em);
+            rollbackTransaction(em);
             e.printStackTrace();
         } finally {
             em.close();
         }
     }
 
-
-    public void beginTransaction(EntityTransaction transaction) {
-        if (!transaction.isActive()) {
-            transaction.begin();
-        }
-    }
 
     public DistributoreAutorizzato getDistributoreById(Long id) {
         EntityManager em = emf.createEntityManager();
@@ -162,13 +114,4 @@ public class DistributoreDAO {
         return conteggioTicket;
     }
 
-    public void commitTransaction(EntityTransaction transaction, EntityManager em) {
-        transaction.commit();
-    }
-
-    public void rollbackTransaction(EntityTransaction transaction, EntityManager em) {
-        if (transaction.isActive()) {
-            transaction.rollback();
-        }
-    }
 }

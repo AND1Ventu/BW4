@@ -4,7 +4,7 @@ import entities.DistributoreAutorizzato;
 import entities.Manutenzione;
 import entities.Percorso;
 import entities.Tratta;
-import dao.TrattaDAO;
+import dao.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,19 +16,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PercorsoDAO {
+public class PercorsoDAO extends BaseDAO {
 
-    private EntityManagerFactory emf;
-
-
-    public PercorsoDAO() {this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");}
+    public PercorsoDAO() {
+        super("trasporto_pubblico");
+    }
 
     public void aggiungiPercorso(Percorso percorso) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             em.persist(percorso);
             commitTransaction(em);
         } catch (Exception e) {
@@ -41,10 +39,9 @@ public class PercorsoDAO {
 
     public void rimuovipercorso(Long id) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             Percorso percorso = em.find(Percorso.class, id);
             if (percorso != null) {
                 em.remove(percorso);
@@ -58,29 +55,6 @@ public class PercorsoDAO {
         }
     }
 
-    public void beginTransaction(EntityTransaction transaction) {
-        if (!transaction.isActive()) {
-            transaction.begin();
-        }
-    }
-
-    public void commitTransaction(EntityManager em) {
-        em.getTransaction().commit();
-        closeEntityManager(em);
-    }
-
-    public void rollbackTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
-        }
-        closeEntityManager(em);
-    }
-
-    public void closeEntityManager(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
 
     public Map<String,Long> calcolaTempoMedioPercorso(){
         EntityManager em = emf.createEntityManager();

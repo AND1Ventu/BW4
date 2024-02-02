@@ -9,44 +9,18 @@ import javax.persistence.Persistence;
 import javax.persistence.EntityTransaction;
 import java.time.LocalDateTime;
 
-public class TicketDAO {
+public class TicketDAO extends BaseDAO{
 
-    private EntityManagerFactory emf;
 
     public TicketDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
-    }
-
-    public void closeEntityManager(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
-
-    public void beginTransaction(EntityTransaction transaction) {
-        if (!transaction.isActive()) {
-            transaction.begin();
-        }
-    }
-
-    public void commitTransaction(EntityManager em) {
-        em.getTransaction().commit();
-//        closeEntityManager(em);
-    }
-
-    public void rollbackTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
-        }
-        closeEntityManager(em);
+        super("trasporto_pubblico");
     }
 
     public void aggiungiTicket(Ticket ticket) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             em.merge(ticket);
 //            em.refresh(ticket);
             commitTransaction(em);
@@ -60,10 +34,9 @@ public class TicketDAO {
 
     public void rimuoviTicket(Long id) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             Ticket ticket = em.find(Ticket.class, id);
             if (ticket != null) {
                 em.remove(ticket);
@@ -103,11 +76,10 @@ public class TicketDAO {
 
     public Long attivatiPerDate(LocalDateTime data_inizio, LocalDateTime data_fine) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             String jpql = "SELECT COUNT(t) FROM Ticket t WHERE t.dataAttivazione BETWEEN :dataInizio AND :dataFine";
 
             return em.createQuery(jpql, Long.class)

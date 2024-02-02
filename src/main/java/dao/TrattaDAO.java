@@ -11,15 +11,10 @@ import javax.persistence.Persistence;
 import java.util.List;
 import java.time.Duration;
 
-public class TrattaDAO {
+public class TrattaDAO extends BaseDAO {
 
-    private EntityManagerFactory emf;
-
-    public TrattaDAO(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
     public TrattaDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
+        super("trasporto_pubblico");
     }
 
 
@@ -59,33 +54,6 @@ public class TrattaDAO {
         return conteggioNTratte;
     }
 
-
-    public void beginTransaction(EntityManager em) {
-        if (!em.getTransaction().isActive()) {
-            em.getTransaction().begin();
-        }
-    }
-
-    public void commitTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().commit();
-        }
-        closeEntityManager(em);
-    }
-
-    public void rollbackTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
-        }
-        closeEntityManager(em);
-    }
-
-    public void closeEntityManager(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
-
     public Duration getTempoPercorrenzaTratta(Long id){
         EntityManager em = emf.createEntityManager();
         Tratta tratta = em.find(Tratta.class, id);
@@ -96,7 +64,5 @@ public class TrattaDAO {
             return Duration.ZERO;
         }
     }
-
-
 
 }

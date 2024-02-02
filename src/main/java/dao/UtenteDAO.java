@@ -8,20 +8,18 @@ import javax.persistence.Persistence;
 import javax.persistence.EntityTransaction;
 import java.time.LocalDateTime;
 
-public class UtenteDAO {
+public class UtenteDAO extends BaseDAO{
 
-    private EntityManagerFactory emf;
 
     public UtenteDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
+        super("trasporto_pubblico");
     }
 
     public void aggiungiUtente(Utente utente) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             em.persist(utente);
             commitTransaction(em);
         } catch (Exception e) {
@@ -34,10 +32,9 @@ public class UtenteDAO {
 
     public void rimuoviUtente(Long id) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             Utente utente = em.find(Utente.class, id);
             if (utente != null) {
                 em.remove(utente);
@@ -50,32 +47,5 @@ public class UtenteDAO {
             closeEntityManager(em);
         }
     }
-
-    public void beginTransaction(EntityTransaction transaction) {
-        if (!transaction.isActive()) {
-            transaction.begin();
-        }
-    }
-
-    public void commitTransaction(EntityManager em) {
-        em.getTransaction().commit();
-        closeEntityManager(em);
-    }
-
-    public void rollbackTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
-        }
-        closeEntityManager(em);
-    }
-
-    public void closeEntityManager(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
-
-
-
 
 }

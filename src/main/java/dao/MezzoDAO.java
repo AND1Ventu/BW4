@@ -12,44 +12,17 @@ import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class MezzoDAO {
-
-    private EntityManagerFactory emf;
+public class MezzoDAO extends BaseDAO {
 
     public MezzoDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
-    }
-
-    public void closeEntityManager(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
-
-    public void beginTransaction(EntityTransaction transaction) {
-        if (!transaction.isActive()) {
-            transaction.begin();
-        }
-    }
-
-    public void commitTransaction(EntityManager em) {
-        em.getTransaction().commit();
-        closeEntityManager(em);
-    }
-
-    public void rollbackTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
-        }
-        closeEntityManager(em);
+        super("trasporto_pubblico");
     }
 
     public void aggiungiMezzo(Mezzo mezzo) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             em.merge(mezzo);
 //            em.refresh(distributore);
             commitTransaction(em);
@@ -63,10 +36,9 @@ public class MezzoDAO {
 
     public void rimuoviMezzo(Long id) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             Mezzo mezzo = em.find(Mezzo.class, id);
             if (mezzo != null) {
                 em.remove(mezzo);

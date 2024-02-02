@@ -11,20 +11,17 @@ import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ManutenzioneDAO {
-
-    private EntityManagerFactory emf;
+public class ManutenzioneDAO extends BaseDAO {
 
     public ManutenzioneDAO() {
-        this.emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
+        super("trasporto_pubblico");
     }
 
     public void aggiungiManutenzione(Manutenzione manutenzione) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             em.persist(manutenzione);
             commitTransaction(em);
         } catch (Exception e) {
@@ -37,10 +34,9 @@ public class ManutenzioneDAO {
 
     public void rimuoviManutenzione(Long id) {
         EntityManager em = emf.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
 
         try {
-            beginTransaction(transaction);
+            beginTransaction(em);
             Manutenzione manutenzione = em.find(Manutenzione.class, id);
             if (manutenzione != null) {
                 em.remove(manutenzione);
@@ -54,29 +50,6 @@ public class ManutenzioneDAO {
         }
     }
 
-    public void beginTransaction(EntityTransaction transaction) {
-        if (!transaction.isActive()) {
-            transaction.begin();
-        }
-    }
-
-    public void commitTransaction(EntityManager em) {
-        em.getTransaction().commit();
-        closeEntityManager(em);
-    }
-
-    public void rollbackTransaction(EntityManager em) {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
-        }
-        closeEntityManager(em);
-    }
-
-    public void closeEntityManager(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
 }
 
 
